@@ -42,21 +42,6 @@ class ChannelUser(BaseModel):
         db_table = "channelusers"
 
 
-class Command(BaseModel):
-    username = ForeignKeyField(User)
-    channel = ForeignKeyField(Channel)
-    created_at = DateTimeField(default=datetime.datetime.now)
-    trigger = CharField(null=False)
-    response = CharField(null=False)
-    user_level = BooleanField(null=False)
-    time_interval = IntegerField(default=0, null=False)
-    last_triggered = DateTimeField(default=datetime.datetime.now)
-    times_used = IntegerField(null=False)
-
-    class Meta:
-        db_table = "commands"
-
-
 class Quote(BaseModel):
     username = ForeignKeyField(User)
     channel = ForeignKeyField(Channel)
@@ -79,6 +64,6 @@ class Message(BaseModel):
 
 try:
     db.connect()
-    db.create_tables([User, Channel, ChannelUser, Command, Quote, Message])
+    db.create_tables([User, Channel, ChannelUser, Quote, Message])
 except OperationalError:
     pass
