@@ -16,7 +16,7 @@ from lib.functions_general import pbot
 from src.config.config import config
 from src.lib.irc import IRC
 from src.lib.points import modify_points
-from src.models.model import Channel, Message, User, Command
+from src.models.model import Channel, Message, User
 from src.lib.moderators import get_moderator
 
 reload(sys)
@@ -45,19 +45,7 @@ class Bot(object):
         self.run()
 
     def return_custom_command(self, chan, trigger, username):
-        Channel.get_or_create(channel=chan)
-        try:
-            command = Command.get(
-                trigger=trigger,
-                channel=Channel.get(channel=chan).id)
-            Command.update(times_used=Command.times_used+1).where(
-                Command.trigger == trigger,
-                Command.channel == Channel.get(channel=chan).id
-            ).execute()
-            resp = command.response
-            return resp
-        except Command.DoesNotExist:
-            return
+        pass
 
     def privmsg(self, username, channel, message):
         if (channel == "#" + PRIMARY_CHANNEL or
@@ -101,22 +89,9 @@ class Bot(object):
             pbot('Command is on cooldown. (%s) (%s) (%ss remaining)' % (
                 command, username, commands.get_cooldown_remaining(
                     command, channel)), channel)
-            self.IRC.send_whisper(
-                username, "Sorry! " + command +
-                " is on cooldown for " + str(
-                    commands.get_cooldown_remaining(
-                        command, channel)
-                ) + " more seconds in " + channel.lstrip("#") +
-                ". Can I help you?")
             return
         if commands.check_has_user_cooldown(command) and not moderator:
             if commands.is_on_user_cooldown(command, channel, username):
-                self.IRC.send_whisper(
-                    username, "Slow down! Try " + command +
-                    " in " + channel.lstrip("#") + " in another " + str(
-                        commands.get_user_cooldown_remaining(
-                            command, channel, username)) + " seconds or just \
-ask me directly?")
                 return
             commands.update_user_last_used(command, channel, username)
         pbot('Command is valid and not on cooldown. (%s) (%s)' %

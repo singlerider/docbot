@@ -1,37 +1,6 @@
 import globals
 
 commands = {
-    '!report': {
-        'limit': 200,
-        'argc': 1,
-        'return': 'command',
-        'space_case': True,
-        'user_level': 'mod',
-        'usage': "!report [insert bug report text here]"
-    },
-    '!opinion': {
-        'limit': 0,
-        'argc': 0,
-        'return': 'command',
-        'user_level': 'reg',
-        'usage': '!opinion',
-        'user_limit': 30
-    },
-    '!ammo': {
-        'limit': 0,
-        'argc': 3,
-        'return': 'command',
-        'usage': "!ammo *['add'/'remove'] [username] [amount]",
-        'optional': True,
-        'user_limit': 30,
-        'user_level': 'mod'
-    },
-    '!help': {
-        'limit': 15,
-        'return': 'There is a super useful README for the bot at  at github.com/singlerider/jadebot',
-        'usage': '!help',
-        'user_limit': 30
-    },
     '!followers': {
         'limit': 30,
         'user_level': 'mod',
@@ -60,20 +29,6 @@ commands = {
         'argc': 0,
         'usage': '!stream'
     },
-    '!winner': {
-        'limit': 0,
-        'argc': 0,
-        'return': 'command',
-        'usage': '!winner',
-        'user_limit': 30,
-    },
-    '!popularity': {
-        'limit': 0,
-        'argc': 1,
-        'return': 'command',
-        'space_case': True,
-        'usage': '!popularity [name_of_game]'
-    },
     '!caster': {
         'limit': 0,
         'argc': 1,
@@ -81,31 +36,18 @@ commands = {
         'usage': '!caster [streamer_username]',
         'user_level': 'mod'
     },
-    '!donation': {
+    '!addquote': {
         'limit': 0,
-        'argc': 2,
+        'argc': 1,
         'return': 'command',
-        'usage': '!donation [username] [currency_amount]',
+        'usage': '!addquote [quote]',
         'user_level': 'mod'
     },
-    '!reload': {
+    '!quote': {
         'limit': 0,
         'argc': 0,
         'return': 'command',
-        'usage': '!reload'
-    },
-    '!drop': {
-        'limit': 0,
-        'argc': 0,
-        'return': 'command',
-        'usage': '!drop'
-    },
-    '!leaderboard': {
-        'limit': 300,
-        'argc': 0,
-        'return': 'command',
-        'usage': '!leaderboard',
-        'user_level': 'mod'
+        'usage': '!quote'
     }
 }
 
