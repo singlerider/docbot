@@ -10,9 +10,8 @@ sub = {
     "low": [
         "{username} has just resubscribed for {months} years straight! Your loyalty is admirable",
         "For {months} years, {username} has been a red bow tie-wearing high-level gamer.",
-
+        "God to see you again, {username}. You've been quiet.",
+        "You're an athletic marvel, {username}. These past {months} years have gone by fast."
     ],
-    "high": [
-
-    ]
+    "high": []
 }
